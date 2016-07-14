@@ -30,9 +30,7 @@ public class MakeLayoutFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.make_layout, container, false);
-
         setupListeners(view);
-
         // Inflate the layout for this fragment
         return view;
     }
@@ -47,7 +45,7 @@ public class MakeLayoutFragment extends Fragment {
         try {
             findListener = (IFindListener) activity;
         } catch (ClassCastException e) {
-            throw new ClassCastException(activity.toString() + " must implement OnArticleSelectedListener");
+            throw new ClassCastException(activity.toString() + " must implement IFindListener");
         }
     }
 
@@ -63,12 +61,12 @@ public class MakeLayoutFragment extends Fragment {
         });
 
         EditText editText = (EditText) view.findViewById(R.id.findMeme);
-        button.setOnClickListener(new View.OnClickListener()
-        {
+        editText.setOnFocusChangeListener(new View.OnFocusChangeListener(){
             @Override
-            public void onClick(View v)
-            {
-                findListener.onFind();
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus){
+                    findListener.onFind();
+                }
             }
         });
     }
