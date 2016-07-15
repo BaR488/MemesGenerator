@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -12,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.example.boris.memesgenerator.R;
 
@@ -25,12 +27,17 @@ import java.util.Date;
 public class MakeLayoutFragment extends Fragment {
 
     IFindListener findListener;
+    public Drawable drawable;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.make_layout, container, false);
         setupListeners(view);
+
+        EditText top = (EditText) view.findViewById(R.id.topText);
+        EditText bottom = (EditText) view.findViewById(R.id.bottomText);
+
         // Inflate the layout for this fragment
         return view;
     }
@@ -46,6 +53,15 @@ public class MakeLayoutFragment extends Fragment {
             findListener = (IFindListener) activity;
         } catch (ClassCastException e) {
             throw new ClassCastException(activity.toString() + " must implement IFindListener");
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (drawable != null){
+            ImageView imageView = (ImageView) getView().findViewById(R.id.meme);
+            imageView.setImageDrawable(drawable);
         }
     }
 

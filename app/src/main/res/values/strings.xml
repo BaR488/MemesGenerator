@@ -2,4 +2,6 @@
     <string name="app_name">MemesGenerator</string>
     <string name="send_to">Отправить в...</string>
     <string name="memeNotSaved">Мемчик не сохранен</string>
+    <string name="textInput">Введите текст</string>
+    <string name="find">Поиск</string>
 </resources>
