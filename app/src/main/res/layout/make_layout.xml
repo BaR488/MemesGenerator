@@ -15,6 +15,13 @@
         android:id="@+id/findMeme"
         android:hint="@string/find"/>
 
+    <SeekBar
+        android:layout_width="match_parent"
+        android:layout_marginTop="70dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/seekSize"
+        android:max="30"
+        android:progress="15"/>
     <RelativeLayout
         android:id="@+id/mem4ik"
         android:layout_width="wrap_content"
@@ -31,7 +38,7 @@
             android:layout_height="match_parent" />
 
         <EditText
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="50dp"
             android:id="@+id/topText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -62,6 +69,16 @@
             android:textSize="15pt" />
 
     </RelativeLayout>
+    <SeekBar
+        android:layout_width="match_parent"
+        android:layout_marginTop="50dp"
+        android:id="@+id/seekMargen"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="70dp"
+        android:max="100"
+        android:progress="50"/>
+
         <Button
         android:id="@+id/shareButton"
         android:layout_width="wrap_content"
