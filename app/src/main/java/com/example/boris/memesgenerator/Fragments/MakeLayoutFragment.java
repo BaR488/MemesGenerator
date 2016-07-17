@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 import com.example.boris.memesgenerator.R;
 
@@ -62,6 +63,12 @@ public class MakeLayoutFragment extends Fragment {
         if (drawable != null){
             ImageView imageView = (ImageView) getView().findViewById(R.id.meme);
             imageView.setImageDrawable(drawable);
+        }else{
+            RelativeLayout relativeLayout = (RelativeLayout) getView().findViewById(R.id.mem4ik);
+            relativeLayout.setVisibility(View.GONE);
+            Button button  = (Button) getView().findViewById(R.id.shareButton);
+            button.setEnabled(false);
+
         }
     }
 

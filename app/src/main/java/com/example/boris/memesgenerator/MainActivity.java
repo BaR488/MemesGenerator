@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity implements  MakeLayoutFragme
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         MakeLayoutFragment fragment = new MakeLayoutFragment();
         fragmentTransaction.replace(R.id.fragment_container, fragment);
-        fragmentTransaction.addToBackStack("mkFragment");
+//        fragmentTransaction.addToBackStack("mkFragment");
         fragmentTransaction.commit();
         saved = fragment;
     }
@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity implements  MakeLayoutFragme
         MakeLayoutFragment fragment = new MakeLayoutFragment();
         fragment.drawable = drawable;
         fragmentTransaction.replace(R.id.fragment_container, fragment);
-        fragmentTransaction.addToBackStack("chFragment");
+//        fragmentTransaction.addToBackStack("chFragment");
         fragmentTransaction.commit();
     }
 }

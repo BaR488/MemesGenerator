@@ -7,20 +7,24 @@ import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 
-import com.example.boris.memesgenerator.R;
+import com.example.boris.memesgenerator.Entities.Meme;
+import com.example.boris.memesgenerator.Helpers.AssetsHelper.MemesAssetsHelper;
+
+import java.util.ArrayList;
 
 /**
  * Created by boris on 14.07.2016.
  */
 public class MemeImageAdapter extends BaseAdapter {
     private Context mContext;
+    private ArrayList<Meme>  memes = new ArrayList<>();
 
     public MemeImageAdapter(Context c) {
         mContext = c;
     }
 
     public int getCount() {
-        return mThumbIds.length;
+        return memes.size();
     }
 
     public Object getItem(int position) {
@@ -44,22 +48,12 @@ public class MemeImageAdapter extends BaseAdapter {
             imageView = (ImageView) convertView;
         }
 
-        imageView.setImageResource(mThumbIds[position]);
+        imageView.setImageDrawable(MemesAssetsHelper.getDrawable(mContext, memes.get(position)));
         return imageView;
     }
 
-    // references to our images
-    private Integer[] mThumbIds = {
-            R.drawable.sample_2, R.drawable.sample_3,
-            R.drawable.sample_4, R.drawable.sample_5,
-            R.drawable.sample_6, R.drawable.sample_7,
-            R.drawable.sample_0, R.drawable.sample_1,
-            R.drawable.sample_2, R.drawable.sample_3,
-            R.drawable.sample_4, R.drawable.sample_5,
-            R.drawable.sample_6, R.drawable.sample_7,
-            R.drawable.sample_0, R.drawable.sample_1,
-            R.drawable.sample_2, R.drawable.sample_3,
-            R.drawable.sample_4, R.drawable.sample_5,
-            R.drawable.sample_6, R.drawable.sample_7
-    };
+    public void updateData(ArrayList<Meme> memeArrayList) {
+        memes = memeArrayList;
+        notifyDataSetChanged();
+    }
 }
