@@ -28,7 +28,7 @@ public class MemeImageAdapter extends BaseAdapter {
     }
 
     public Object getItem(int position) {
-        return null;
+        return memes.get(position);
     }
 
     public long getItemId(int position) {
@@ -47,7 +47,6 @@ public class MemeImageAdapter extends BaseAdapter {
         } else {
             imageView = (ImageView) convertView;
         }
-
         imageView.setImageDrawable(MemesAssetsHelper.getDrawable(mContext, memes.get(position)));
         return imageView;
     }

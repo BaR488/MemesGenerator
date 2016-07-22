@@ -3,7 +3,6 @@ package com.example.boris.memesgenerator.Fragments;
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -18,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 import com.example.boris.memesgenerator.Adapters.MemeImageAdapter;
+import com.example.boris.memesgenerator.Entities.Meme;
 import com.example.boris.memesgenerator.R;
 import com.example.boris.memesgenerator.Tasks.MemesSqlAsyncTask;
 
@@ -30,7 +30,7 @@ public class ChooseLayoutFragment extends Fragment {
     Context context;
 
     public interface IChooseMeme {
-        public void onChooseMeme(Drawable drawable);
+        public void onChooseMeme(Meme drawable);
     }
 
     @Override
@@ -87,7 +87,8 @@ public class ChooseLayoutFragment extends Fragment {
                 ImageView imageView = (ImageView) v;
                 InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
-                iChooseMeme.onChooseMeme(imageView.getDrawable());
+                Meme meme = (Meme) memeImageAdapter.getItem(position);
+                iChooseMeme.onChooseMeme(meme);
             }
         });
 

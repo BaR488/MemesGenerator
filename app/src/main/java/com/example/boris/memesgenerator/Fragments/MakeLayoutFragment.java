@@ -5,7 +5,6 @@ import android.app.Fragment;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -19,6 +18,8 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 
+import com.example.boris.memesgenerator.Entities.Meme;
+import com.example.boris.memesgenerator.Helpers.AssetsHelper.MemesAssetsHelper;
 import com.example.boris.memesgenerator.Helpers.BitmapHelper;
 import com.example.boris.memesgenerator.R;
 
@@ -32,7 +33,8 @@ import java.util.Date;
 public class MakeLayoutFragment extends Fragment {
 
     IFindListener findListener;
-    public Drawable drawable;
+    public Meme drawable;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -66,7 +68,7 @@ public class MakeLayoutFragment extends Fragment {
         super.onResume();
         if (drawable != null){
             ImageView imageView = (ImageView) getView().findViewById(R.id.meme);
-            imageView.setImageDrawable(drawable);
+            imageView.setImageDrawable(MemesAssetsHelper.getDrawable(getActivity(),drawable));
         }else{
             RelativeLayout relativeLayout = (RelativeLayout) getView().findViewById(R.id.mem4ik);
             relativeLayout.setVisibility(View.GONE);
@@ -183,7 +185,7 @@ public class MakeLayoutFragment extends Fragment {
         try {
             // image naming and path  to include sd card  appending name you choose for file
             String mPath = Environment.getExternalStoragePublicDirectory(
-                    Environment.DIRECTORY_PICTURES).toString() + "/" + nd + ".png";
+                    Environment.DIRECTORY_PICTURES).toString() + "/" + nd + ".jpg";
 
             // create bitmap screen capture
 
@@ -197,7 +199,7 @@ public class MakeLayoutFragment extends Fragment {
 
             FileOutputStream outputStream = new FileOutputStream(imageFile);
             int quality = 100;
-            imageSaved = bitmap.compress(Bitmap.CompressFormat.PNG, quality, outputStream);
+            imageSaved = bitmap.compress(Bitmap.CompressFormat.JPEG, quality, outputStream);
             outputStream.flush();
             outputStream.close();
 
@@ -219,4 +221,14 @@ public class MakeLayoutFragment extends Fragment {
         shareIntent.setType("image/jpeg");
         startActivity(Intent.createChooser(shareIntent, getResources().getText(R.string.send_to)));
     }
+
+//    @Override
+//    public void onActivityCreated(Bundle savedInstanceState) {
+//        super.onActivityCreated(savedInstanceState);
+//    }
+//
+//    @Override
+//    public void onSaveInstanceState(Bundle outState) {
+//        super.onSaveInstanceState(outState);
+//    }
 }
